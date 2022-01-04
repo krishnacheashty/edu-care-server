@@ -59,7 +59,7 @@ async function run() {
       res.json(event);
 
     })
-      /* get event2 */
+      // /* get event2 */ index?
     app.get('/eventSecond',async(req,res)=>{
       const query={}
       const cursor=eventSecondCollection.find(query)
