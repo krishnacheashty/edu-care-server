@@ -67,12 +67,15 @@ async function run() {
       res.json(eventSecondP);
 
     })
-    /* product add */
-    app.post('/student',async(req,res)=>{
-      const order=req.body
-      const result=await studentCollection.insertOne(order)
-      res.json(result);
-  })
+      /* get event */
+      app.get('/student',async(req,res)=>{
+        const query={}
+        const cursor=studentCollection.find(query)
+        const students=await cursor.toArray();
+        res.json(students);
+  
+      })
+    
     /* amer id admin kina ta check korchi */
   app.get('/users/:email',async(req,res)=>{
     const email=req.params.email;
@@ -86,6 +89,13 @@ async function run() {
     res.json({admin:isAdmin})
 
   })
+
+  /* product add */
+  app.post('/student',async(req,res)=>{
+    const order=req.body
+    const result=await studentCollection.insertOne(order)
+    res.json(result);
+})
 
   app.post('/users',async(req,res)=>{
     const user=req.body;
